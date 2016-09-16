@@ -13,7 +13,7 @@
         font-size: 1.2em;
       }
       li {
-        margin-bottom: 7px;
+        margin-bottom: 13px;
         font-size: 1.2em;
       }
       li > button {
@@ -31,12 +31,12 @@
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyShoppingController as toBuy">
+    <div class="col-md-4" ng-controller="ToBuyShoppingController as toBuy">
      <h2>To Buy:</h2>
      <ul>
        <li ng-repeat="items in toBuy.toBuyList track by $index">
          Buy {{items.quantity}} {{items.name}}(s)
-         <button ng-click="toBuy.moveItem($index);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+         <button ng-click="toBuy.moveItem($index);" class="btn btn-default pull-right"><span class="glyphicon glyphicon-ok"></span> Bought</button>
        </li>
      </ul>
 
@@ -44,12 +44,12 @@
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as bought">
+    <div class="col-md-4" ng-controller="AlreadyBoughtShoppingController as bought">
      <h2>Already Bought:</h2>
      <ul>
        <li ng-repeat="items in bought.bougthList track by $index">
          Bought {{items.quantity}} {{items.name}}(s)
-          <button ng-click="bought.retrieveItem($index);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Oooops</button>
+          <button ng-click="bought.retrieveItem($index);" class="btn btn-default pull-right"><span class="glyphicon glyphicon-ok"></span> Oooops</button>
        </li>
      </ul>
      <div ng-if="!bought.bougthList.length" class="emptyMessage">Nothing bought yet.</div>
