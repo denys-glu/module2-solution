@@ -22,37 +22,51 @@
       button > span {
         color: green;
       }
+      button span.remove {
+        color: red;
+      }
     </style>
   </head>
 <body>
   <div class="container">
-  <h1>Shopping List Check Off</h1>
+  <h1 class="text-center">Shopping List Check Off</h1>
 
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-4" ng-controller="ToBuyShoppingController as toBuy">
-     <h2>To Buy:</h2>
+    <div class="col-md-offset-4 col-md-6" ng-controller="ToAddItemToTheList as addItem">
+      <h2>Add to list:</h2>
+      <input type="text" ng-model="addItem.itemName" placeholder="item name">
+      <input type="text" ng-model="addItem.itemQuantity" placeholder="item quantity">
+      <button ng-click="addItem.addItem();">Add Item</button>
+      <div ng-if="addItem.errorMessage" class="error">Error: {{addItem.errorMessage}}</div>
+    </div>
+    <div class="col-md-6" ng-controller="ToBuyShoppingController as toBuy">
+     <h2 class="text-center">To Buy:</h2>
      <ul>
        <li ng-repeat="items in toBuy.toBuyList track by $index">
          Buy {{items.quantity}} {{items.name}}(s)
+         
+         <button ng-click="toBuy.removeItem($index);" class="btn btn-default pull-right"><span class="glyphicon glyphicon-remove remove"></span> Remove</button>
+
          <button ng-click="toBuy.moveItem($index);" class="btn btn-default pull-right"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+
        </li>
      </ul>
 
-     <div ng-if="!toBuy.toBuyList.length" class="emptyMessage">Everything is bought!</div>
+     <div ng-if="!toBuy.toBuyList.length" class="emptyMessage text-center">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-4" ng-controller="AlreadyBoughtShoppingController as bought">
-     <h2>Already Bought:</h2>
+    <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as bought">
+     <h2 class="text-center">Already Bought:</h2>
      <ul>
        <li ng-repeat="items in bought.bougthList track by $index">
          Bought {{items.quantity}} {{items.name}}(s)
           <button ng-click="bought.retrieveItem($index);" class="btn btn-default pull-right"><span class="glyphicon glyphicon-ok"></span> Oooops</button>
        </li>
      </ul>
-     <div ng-if="!bought.bougthList.length" class="emptyMessage">Nothing bought yet.</div>
+     <div ng-if="!bought.bougthList.length" class="emptyMessage text-center">Nothing bought yet.</div>
     </div>
   </div>
 </div>
