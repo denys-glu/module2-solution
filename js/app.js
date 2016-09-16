@@ -36,25 +36,18 @@
     var toBuyList = list;
     var movedItems = [];
     service.retrieveItem = function(itemIndex) {
-      console.log("retrieveItem ",toBuyList);
-      console.log("retrieveItem ",movedItems);
       toBuyList.push(movedItems[itemIndex]);
       movedItems.splice(itemIndex,1);
     }
     service.moveItem = function(itemIndex){
-      console.log("moveItem ",toBuyList);
-      console.log("moveItem ",movedItems);
       movedItems.push(toBuyList[itemIndex]);
       toBuyList.splice(itemIndex,1);
     }
-
     service.getItems = function (){
       return toBuyList;
     }
-
     service.movedItems = function (){
       return movedItems;
     }
-
   }
 })();
